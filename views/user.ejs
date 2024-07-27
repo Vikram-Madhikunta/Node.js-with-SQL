@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL users enrolled</title>
+    <style>
+        h2{
+         display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h2>ADD A NEW USER </h2>
+   <form action="/user/add" method="get"><button>Add a user</button></form>
+   <br><br><br>
+    <table border="2px">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
+        </tr>
+        <% for (const data of datas) { %>
+            <tr>
+                <td><%= data.id %></td>
+                <td><%= data.name %></td>
+                <td><%= data.email %></td>
+                <td>
+                    <form action="/user/<%= data.id %>/edit" method="get">
+                        <button>Edit Username</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/user/<%= data.id %>?_method=DELETE" method="post">
+                        <button>DELETE</button>
+                    </form>
+                </td>
+            </tr>
+       <% } %>
+    </table>
+</body>
+</html>
